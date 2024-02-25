@@ -22,5 +22,6 @@ public class Main {
         numbers.insert(190);
         numbers.insert(200);
         numbers.show();
+        numbers.timinig();
     }
 }

@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class DynamicArray{
     private int[] items;
     private int count;
@@ -31,5 +29,13 @@ public class DynamicArray{
             for(int i = 0; i < count; i++){
                 System.out.print(items[i] + " ");
             }
+    }
+    public void timinig(){
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++){
+            insert(i);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("\nTime taken: " + (end - start) / 1000.0 + " seconds");
     }
 }
