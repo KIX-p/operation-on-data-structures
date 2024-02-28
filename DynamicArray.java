@@ -24,18 +24,23 @@ public class DynamicArray{
         items[count++] = item;
     }
 
+    // removeAt method to remove an item at a specific index
+    public void removeAt(int index){
+        // validate the index
+        if (index < 0 || index >= count){
+            throw new IllegalArgumentException();
+        }
+        // shift the items to the left to fill the hole
+        for (int i = index; i < count - 1; i++){
+            items[i] = items[i + 1];
+        }
+        count--;
+    }
+
     // implement the show method to display the items in the array
     public void show(){
             for(int i = 0; i < count; i++){
                 System.out.print(items[i] + " ");
             }
-    }
-    public void timinig(){
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 100000; i++){
-            insert(i);
-        }
-        long end = System.currentTimeMillis();
-        System.out.println("\nTime taken: " + (end - start) / 1000.0 + " seconds");
     }
 }
