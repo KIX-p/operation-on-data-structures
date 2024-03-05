@@ -2,45 +2,66 @@ public class DynamicArray{
     private int[] items;
     private int count;
 
+    public int getItem(int index){
+        return items[index];
+    }
 
-    // constructor to initialize the dynamic array with a length
     public DynamicArray(int length){
         items = new int[length];
     }
 
-    public void insert(int item){
-        // if the array is full, resize it
-        if (items.length == count){
-            // create a new array (plus one the size)
-            int[] newItems = new int[count + 1];
-            // copy all the existing items
+    // insert into array
+    public void insertIntoArray(int index, int value) {
+
+        // If the provided index is greater than or equal to the length of the current array
+        if (index >= items.length) {
+
+            // Create a new array with a size of index + 1
+            int newSize = index + 1;
+            int[] newItems = new int[newSize];
+
+            // Copy all existing items to the new array
             for (int i = 0; i < count; i++){
                 newItems[i] = items[i];
             }
-            // set "items" to this new array
+
+            // Replace the old array with the new one
             items = newItems;
         }
-        // add the new item
-        items[count++] = item;
+        // Insert the new value at the specified index
+        items[index] = value;
+
+        // If the index + 1 is greater than the current count, update the count
+        if (index + 1 > count) {
+            count = index + 1;
+        }
     }
 
-    // removeAt method to remove an item at a specific index
     public void removeAt(int index){
-        // validate the index
         if (index < 0 || index >= count){
-            throw new IllegalArgumentException();
+            System.out.println("Invalid index");
+            return;
         }
-        // shift the items to the left to fill the hole
+
         for (int i = index; i < count - 1; i++){
             items[i] = items[i + 1];
         }
         count--;
     }
 
-    // implement the show method to display the items in the array
-    public void show(){
-            for(int i = 0; i < count; i++){
-                System.out.print(items[i] + " ");
+    public void search(int item){
+        for (int i = 0; i < count; i++){
+            if (items[i] == item){
+                System.out.println("Item found at index: " + i);
+                return;
             }
+        }
+        System.out.println("Item not found");
+    }
+
+    public void show(){
+        for(int i = 0; i < count; i++){// Iterate only to count
+            System.out.print(items[i] + " ");
+        }
     }
 }
