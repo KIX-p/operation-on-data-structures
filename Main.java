@@ -7,7 +7,7 @@ public class Main {
         System.out.print("Enter the size of the array: ");
         int arraySize = scanner.nextInt();
         DynamicArray numbers = new DynamicArray(arraySize);
-        
+
         while (true){
             System.out.println("\nChoose the data structure to use:");
             System.out.println("1. Array");
@@ -25,7 +25,8 @@ public class Main {
                         System.out.println("2. remove a number from Array:");
                         System.out.println("3. Search for a number in Array:");
                         System.out.println("4. Show Array");
-                        System.out.println("5. Exit to main menu");
+                        System.out.println("5. Load from file");
+                        System.out.println("6. Exit to main menu");
                         System.out.print("Enter your choice: ");
                         choice2 = scanner.nextInt();
 
@@ -62,13 +63,18 @@ public class Main {
                                 System.out.println("\n-----------------Array----------------- ");
                                 break;
                             case 5:
+                                System.out.print("Enter the file name: ");
+                                String filename = scanner.next();
+                                numbers.loadFromFile(filename);
+                                break;
+                            case 6:
                                 System.out.println("\nExiting to main menu...");
                                 break;
                             default:
                                 System.out.println("\nInvalid choice");
                                 break;
                         }
-                    } while (choice2 != 4);
+                    } while (choice2 != 6);
                     break;
                 case 2:
                     System.out.println("\nSingly Linked List");

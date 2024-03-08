@@ -1,3 +1,8 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+
 public class DynamicArray{
     private int[] items;
     private int count;
@@ -57,6 +62,19 @@ public class DynamicArray{
             }
         }
         System.out.println("Item not found");
+    }
+
+    public void loadFromFile(String filename){
+        File file = new File(filename);
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()){
+                insertIntoArray(count, scanner.nextInt());
+            }
+            scanner.close();
+        } catch (FileNotFoundException e){
+            System.out.println("File not found" + filename);
+        }
     }
 
     public void show(){
