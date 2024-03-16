@@ -45,27 +45,43 @@ public class Main {
                             case 2:
                                 System.out.print("Enter the index to remove: ");
                                 int index2 = scanner.nextInt();
+                                long start2 = System.currentTimeMillis();
                                 System.out.println("\n-----------------------------------------");
                                 System.out.println("Removing " + numbers.getItem(index2) + " from index " + index2);
                                 numbers.removeAt(index2);
                                 System.out.println("\n-----------------------------------------");
+                                long end2 = System.currentTimeMillis();
+                                double time2 = (end2 - start2)/1000.0;
+                                System.out.println("Time: " + time2 + " seconds");
                                 break;
                             case 3:
                                 System.out.print("Enter the number to search: ");
                                 int item = scanner.nextInt();
+                                long start3 = System.currentTimeMillis();
                                 System.out.println("\n-----------------------------------------");
                                 numbers.search(item);
                                 System.out.println("\n-----------------------------------------");
+                                long end3 = System.currentTimeMillis();
+                                double time3 = (end3 - start3)/1000.0;
+                                System.out.println("Time: " + time3 + " seconds");
                                 break;
                             case 4:
+                                long start4 = System.currentTimeMillis();
                                 System.out.println("\n-----------------Array----------------- ");
                                 numbers.show();
                                 System.out.println("\n-----------------Array----------------- ");
+                                long end4 = System.currentTimeMillis();
+                                double time4 = (end4 - start4)/1000.0;
+                                System.out.println("Time: " + time4 + " seconds");
                                 break;
                             case 5:
                                 System.out.print("Enter the file name: ");
                                 String filename = scanner.next();
+                                long start5 = System.currentTimeMillis();
                                 numbers.loadFromFile(filename);
+                                long end5 = System.currentTimeMillis();
+                                double time5 = (end5 - start5)/1000.0;
+                                System.out.println("Time: " + time5 + " seconds");
                                 break;
                             case 6:
                                 System.out.println("\nExiting to main menu...");

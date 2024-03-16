@@ -68,8 +68,13 @@ public class DynamicArray{
         File file = new File(filename);
         try {
             Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()){
-                insertIntoArray(count, scanner.nextInt());
+            while (scanner.hasNext()){
+                if (scanner.hasNextInt()) {
+                    int nextInt = scanner.nextInt();
+                    insertIntoArray(count, nextInt);
+                } else {
+                    System.out.println("Invalid number format: " + scanner.next());
+                }
             }
             scanner.close();
         } catch (FileNotFoundException e){
