@@ -43,8 +43,13 @@ public class Main {
                                 System.out.println("Time: " + time + " seconds");
                                 break;
                             case 2:
+<<<<<<< HEAD
                                 System.out.print("Enter the value to remove: ");
                                 int value1 = scanner.nextInt();
+=======
+                                System.out.print("Enter the index to remove: ");
+                                int index2 = scanner.nextInt();
+>>>>>>> eab2a0b0b013190b394434388d2572e42a48605f
                                 long start2 = System.currentTimeMillis();
                                 System.out.println("\n-----------------------------------------");
                                 int removedIndex = numbers.removeByValue(value1);
