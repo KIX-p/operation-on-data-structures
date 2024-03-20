@@ -1,3 +1,8 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+
 public class DynamicArray{
     private int[] items;
     private int count;
@@ -37,16 +42,28 @@ public class DynamicArray{
         }
     }
 
-    public void removeAt(int index){
-        if (index < 0 || index >= count){
-            System.out.println("Invalid index");
-            return;
+    public int removeByValue(int value){
+        int index = -1; // -1 means value not found
+        for (int i = 0; i < count; i++){
+            if (items[i] == value){
+                index = i;
+                break;
+            }
         }
-
+    
+        if (index == -1){
+            System.out.println("Value not found");
+            return -1;
+        }
+        
+        // Shift the items to the left
         for (int i = index; i < count - 1; i++){
             items[i] = items[i + 1];
         }
+
         count--;
+    
+        return index;
     }
 
     public void search(int item){
@@ -57,6 +74,24 @@ public class DynamicArray{
             }
         }
         System.out.println("Item not found");
+    }
+
+    public void loadFromFile(String filename){
+        File file = new File(filename);
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNext()){
+                if (scanner.hasNextInt()) {
+                    int nextInt = scanner.nextInt();
+                    insertIntoArray(count, nextInt);
+                } else {
+                    System.out.println("Invalid number format: " + scanner.next());
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e){
+            System.out.println("File not found" + filename);
+        }
     }
 
     public void show(){
