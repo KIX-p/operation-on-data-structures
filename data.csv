@@ -1,0 +1,6 @@
+
+Type: insert, ExecutionTime: 0.165, Item Count: 10000
+Type: search, ExecutionTime: 0.004, Item Count: 10000
+Type: remove, ExecutionTime: 0.003, Item Count: 9999
+Type: insert, ExecutionTime: 0.147, Item Count: 10000
+Type: search, ExecutionTime: 0.001, Item Count: 10000
