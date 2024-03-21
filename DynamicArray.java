@@ -10,6 +10,9 @@ public class DynamicArray{
 
     // Method to get an item at a specific index
     public int getItem(int index){
+        if(index >= count || index < 0){
+            throw new ArrayIndexOutOfBoundsException("Index out of bounds");
+        }
         return items[index];
     }
 

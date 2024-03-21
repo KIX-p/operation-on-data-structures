@@ -11,3 +11,10 @@ search, 0.001, 20000
 remove, 0.003, 19999
 remove, 0.001, 19998
 remove, 0.001, 19998
+insert, 0.166, 10000
+insert, 0.153, 10000
+insert, 0.151, 10000
+remove, 0.003, 9999
+insert, 0.159, 10000
+remove, 0.0, 10000
+remove, 0.005, 9999
