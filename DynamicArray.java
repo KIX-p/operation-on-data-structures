@@ -113,7 +113,7 @@ public class DynamicArray{
 
         try {
             fileWriter = new FileWriter(filename, true); // Set true for append mode
-            fileWriter.append("Type: "+operationType + "," + " ExecutionTime: " + String.valueOf(executionTime) + "," +" Item Count: " + String.valueOf(itemCount) + "\n");
+            fileWriter.append(operationType + ", " + String.valueOf(executionTime) + ", " + String.valueOf(itemCount) + "\n");
         } catch (Exception e) {
             System.out.println("Error in CsvFileWriter");
             e.printStackTrace();

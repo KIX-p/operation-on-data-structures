@@ -1,9 +1,13 @@
-
-Type: insert, ExecutionTime: 0.165, Item Count: 10000
-Type: search, ExecutionTime: 0.004, Item Count: 10000
-Type: remove, ExecutionTime: 0.003, Item Count: 9999
-Type: insert, ExecutionTime: 0.147, Item Count: 10000
-Type: search, ExecutionTime: 0.001, Item Count: 10000
-Type: insert, ExecutionTime: 0.167, Item Count: 10000
-Type: search, ExecutionTime: 0.004, Item Count: 10000
-Type: remove, ExecutionTime: 0.004, Item Count: 9999
+insert, 0.163, 10000
+insert, 0.116, 20000
+search, 0.004, 20000
+search, 0.0, 20000
+search, 0.0, 20000
+search, 0.0, 20000
+search, 0.0, 20000
+search, 0.001, 20000
+search, 0.0, 20000
+search, 0.001, 20000
+remove, 0.003, 19999
+remove, 0.001, 19998
+remove, 0.001, 19998
