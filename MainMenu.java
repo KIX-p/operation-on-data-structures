@@ -12,33 +12,33 @@ public class MainMenu {
     }
 
     public void handleMainMenu() {
-    int choice;
-    do {
-        displayMainMenu();
-        choice = scanner.nextInt();
+        int choice;
+        do {
+            displayMainMenu();
+            choice = scanner.nextInt();
 
-        switch (choice) {
-            case 1:
-                arrayOperations.handleArrayOperations();
-                break;
-            case 2:
-                System.out.println("\nLinked List operations are not available yet.");
-                break;
-            case 3:
-                System.out.println("\nDoubly Linked List operations are not available yet.");
-                break;
-            case 4:
-                System.out.println("\nBinary Search Tree operations are not available yet.");
-                break;
-            case 5:
-                System.out.println("\nExiting...");
-                break;
-            default:
-                System.out.println("\nInvalid choice");
-                break;
-        }
-    } while (choice != 5);
-}
+            switch (choice) {
+                case 1:
+                    arrayOperations.handleArrayOperations();
+                    break;
+                case 2:
+                    System.out.println("\nLinked List operations are not available yet.");
+                    break;
+                case 3:
+                    System.out.println("\nDoubly Linked List operations are not available yet.");
+                    break;
+                case 4:
+                    System.out.println("\nBinary Search Tree operations are not available yet.");
+                    break;
+                case 5:
+                    System.out.println("\nExiting...");
+                    break;
+                default:
+                    System.out.println("\nInvalid choice");
+                    break;
+            }
+        } while (choice != 5);
+    }
     private void displayMainMenu() {
         System.out.println("\nChoose a data structure:");
         System.out.println("1. Array");

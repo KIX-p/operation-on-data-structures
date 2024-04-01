@@ -32,13 +32,16 @@ public class ArrayOperations {
                     handleLoadFromFileOperation();
                     break;
                 case 6:
+                    handlePerformOperations();
+                    break;
+                case 7:
                     System.out.println("\nExiting to main menu...");
                     break;
                 default:
                     System.out.println("\nInvalid choice");
                     break;
             }
-        } while (choice != 6);
+        } while (choice != 7);
     }
     private void displayArrayMenu() {
         System.out.println("\nChoose an operation:");
@@ -47,68 +50,69 @@ public class ArrayOperations {
         System.out.println("3. Search");
         System.out.println("4. Show");
         System.out.println("5. Load from file");
-        System.out.println("6. Exit");
+        System.out.println("6. Perform operations");
+        System.out.println("7. Exit");
     }
-
     private void handleInsertOperation() {
         System.out.print("Enter the index: ");
         int index = scanner.nextInt();
         System.out.print("Enter the value: ");
         int value = scanner.nextInt();
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         numbers.insertIntoArray(index, value);
-        long end = System.currentTimeMillis();
-        double time = (end - start) / 1000.0;
+        long end = System.nanoTime();
+        double time = end - start;
         System.out.println("Time: " + time + " seconds");
     }
 
     private void handleRemoveOperation() {
         System.out.print("Enter the value to remove: ");
         int value = scanner.nextInt();
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         System.out.println("\n-----------------------------------------");
         int removedIndex = numbers.removeByValue(value);
         if (removedIndex != -1) {
             System.out.println("Removed value " + value + " from index " + removedIndex);
         }
         System.out.println("\n-----------------------------------------");
-        long end = System.currentTimeMillis();
-        double time = (end - start)/1000.0;
-        numbers.writeDataToCSV("remove", time, numbers.getCount());
+        long end = System.nanoTime();
+        double time = end - start;
         System.out.println("Time: " + time + " seconds");
     }
-    
+
     private void handleSearchOperation() {
         System.out.print("Enter the number to search: ");
         int item = scanner.nextInt();
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         System.out.println("\n-----------------------------------------");
         numbers.search(item);
         System.out.println("\n-----------------------------------------");
-        long end = System.currentTimeMillis();
-        double time = (end - start)/1000.0;
-        numbers.writeDataToCSV("search", time, numbers.getCount());
+        long end = System.nanoTime();
+        double time = end - start;
         System.out.println("Time: " + time + " seconds");
     }
-    
+
     private void handleShowOperation() {
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         System.out.println("\n-----------------Array----------------- ");
         numbers.show();
         System.out.println("\n-----------------Array----------------- ");
-        long end = System.currentTimeMillis();
-        double time = (end - start)/1000.0;
+        long end = System.nanoTime();
+        double time = end - start;
         System.out.println("Time: " + time + " seconds");
     }
-    
+
     private void handleLoadFromFileOperation() {
         System.out.print("Enter the file name: ");
         String filename = scanner.next();
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         numbers.loadFromFile(filename);
-        long end = System.currentTimeMillis();
-        double time = (end - start)/1000.0;
-        numbers.writeDataToCSV("insert", time, numbers.getCount());
+        long end = System.nanoTime();
+        double time = end - start;
         System.out.println("Time: " + time + " seconds");
+    }
+
+    public void handlePerformOperations() {
+        numbers.performOperations();
     }
 }

@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -110,26 +111,60 @@ public class DynamicArray{
     }
 
     // Method to write data to a CSV file
-    public void writeDataToCSV(String operationType, double executionTime, int itemCount) {
+    public void writeDataToCSV(String operationType, double executionTime) {
         String filename = "data.csv";
         FileWriter fileWriter = null;
 
         try {
             fileWriter = new FileWriter(filename, true); // Set true for append mode
-            fileWriter.append(operationType + ", " + String.valueOf(executionTime) + ", " + String.valueOf(itemCount) + "\n");
+            fileWriter.append(operationType + ", " + String.valueOf(executionTime) + "\n");
         } catch (Exception e) {
             System.out.println("Error in CsvFileWriter");
             e.printStackTrace();
-        } 
+        }
         finally {
             try {
                 fileWriter.flush();
                 fileWriter.close();
-            } 
+            }
             catch (IOException e) {
                 System.out.println("Error while flushing/closing fileWriter");
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void performOperations() {
+        Random random = new Random();
+
+        for (int i = 0; i < 100; i++) {
+            // Generate a random number between 0 and 100
+            int randomNumber = random.nextInt(101);
+
+            // Measure the time taken to insert the random number into the array at the current index
+            long startTime = System.nanoTime();
+            insertIntoArray(i, randomNumber);
+            long endTime = System.nanoTime();
+            long insertTime = endTime - startTime;
+
+            // Measure the time taken to remove the number if it is divisible by 10
+            startTime = System.nanoTime();
+            if (randomNumber % 10 == 0) {
+                removeByValue(randomNumber);
+            }
+            endTime = System.nanoTime();
+            long removeTime = endTime - startTime;
+
+            // Measure the time taken to search for the number in the array
+            startTime = System.nanoTime();
+            search(randomNumber);
+            endTime = System.nanoTime();
+            long searchTime = endTime - startTime;
+
+            // Write the operation times to a CSV file
+            writeDataToCSV("insert", insertTime);
+            writeDataToCSV("remove", removeTime);
+            writeDataToCSV("search", searchTime);
         }
     }
 
