@@ -64,7 +64,8 @@ public class ArrayOperations {
         numbers.insertIntoArray(index, value);
         long end = System.nanoTime();
         double time = end - start;
-        System.out.println("Time: " + time + " seconds");
+        System.out.println("Time: " + time);
+        numbers.lengthcustom();
     }
 
     private void handleRemoveOperation() {
@@ -79,7 +80,7 @@ public class ArrayOperations {
         System.out.println("\n-----------------------------------------");
         long end = System.nanoTime();
         double time = end - start;
-        System.out.println("Time: " + time + " seconds");
+        System.out.println("Time: " + time);
     }
 
     private void handleSearchOperation() {
@@ -91,7 +92,7 @@ public class ArrayOperations {
         System.out.println("\n-----------------------------------------");
         long end = System.nanoTime();
         double time = end - start;
-        System.out.println("Time: " + time + " seconds");
+        System.out.println("Time: " + time);
     }
 
     private void handleShowOperation() {
@@ -101,7 +102,7 @@ public class ArrayOperations {
         System.out.println("\n-----------------Array----------------- ");
         long end = System.nanoTime();
         double time = end - start;
-        System.out.println("Time: " + time + " seconds");
+        System.out.println("Time: " + time);
     }
 
     private void handleLoadFromFileOperation() {
@@ -111,7 +112,7 @@ public class ArrayOperations {
         numbers.loadFromFile(filename);
         long end = System.nanoTime();
         double time = end - start;
-        System.out.println("Time: " + time + " seconds");
+        System.out.println("Time: " + time);
     }
 
     public void handlePerformOperations() {

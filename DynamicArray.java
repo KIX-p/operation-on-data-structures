@@ -29,13 +29,18 @@ public class DynamicArray {
 
     // Method to insert a value into the array at a specific index
     public void insertIntoArray(int index, int value) {
-
-        // If the provided index is greater than or equal to the length of the current
-        // array
-        if (index >= items.length) {
-
-            // Create a new array with a size of index + 1
-            int newSize = index + 1;
+        // If the provided index is greater than the count of items in the array
+        // or if the array is full
+        if (index >= items.length || count == items.length) {
+            // Create a new array with a size of index + 1 or double the current size,
+            // whichever is larger
+            int newSize;
+            if (index >= items.length) {
+                newSize = index + 1;
+            }
+            else {
+                newSize = items.length * 2;
+            }
             int[] newItems = new int[newSize];
 
             // Copy all existing items to the new array
@@ -43,14 +48,19 @@ public class DynamicArray {
                 newItems[i] = items[i];
             }
 
-            // Replace the old array with the new onea
+            // Replace the old array with the new one
             items = newItems;
+        }
+
+        // Shift all elements from the index to the right
+        for (int i = count; i > index; i--) {
+            items[i] = items[i - 1];
         }
 
         // Insert the new value at the specified index
         items[index] = value;
 
-        // If the index + 1 is greater than the current count, update the count
+        // Update the count
         if (index + 1 > count) {
             count = index + 1;
         }
@@ -82,7 +92,7 @@ public class DynamicArray {
     }
 
     // Method to search for an item
-    public boolean search(int value){
+    public boolean search(int value) {
         for (int i = 0; i < count; i++) {
             if (items[i] == value) {
                 System.out.println("Value found");
@@ -141,16 +151,16 @@ public class DynamicArray {
             // Generate a random number between 0 and 100
             int randomNumber = random.nextInt(101);
 
-            // Measure the time taken to insert the random number into the array at the
-            // beggining
+            // Measure the time taken to insert the random number into the array at the beggining
+
             long startTime = System.nanoTime();
             insertIntoArray(0, randomNumber); // Insert at the beginning
             long endTime = System.nanoTime();
             long insertTimeStart = endTime - startTime;
             writeDataToCSV("insertStart", insertTimeStart);
 
-            // Measure the time taken to insert the random number into the array at the
-            // middle
+            // Measure the time taken to insert the random number into the array at the middle
+
             startTime = System.nanoTime();
             insertIntoArray(count / 2, randomNumber); // Insert at the middle
             endTime = System.nanoTime();
@@ -184,8 +194,11 @@ public class DynamicArray {
 
     // Method to display all items in the array
     public void show() {
-        for (int i = 0; i < count; i++) {// Iterate only to count
+        for (int i = 0; i < items.length; i++) {// Iterate only to count
             System.out.print(items[i] + " ");
         }
+    }
+    public void lengthcustom() {
+        System.out.println("Length of the array is: " + items.length);
     }
 }
