@@ -5,13 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class DynamicArray{
+public class DynamicArray {
     private int[] items; // Array to hold items
     private int count; // Count of items in the array
 
     // Method to get an item at a specific index
-    public int getItem(int index){
-        if(index >= count || index < 0){
+    public int getItem(int index) {
+        if (index >= count || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Index out of bounds");
         }
         return items[index];
@@ -23,14 +23,15 @@ public class DynamicArray{
     }
 
     // Constructor to initialize the array with a specific length
-    public DynamicArray(int length){
+    public DynamicArray(int length) {
         items = new int[length];
     }
 
     // Method to insert a value into the array at a specific index
     public void insertIntoArray(int index, int value) {
 
-        // If the provided index is greater than or equal to the length of the current array
+        // If the provided index is greater than or equal to the length of the current
+        // array
         if (index >= items.length) {
 
             // Create a new array with a size of index + 1
@@ -38,11 +39,11 @@ public class DynamicArray{
             int[] newItems = new int[newSize];
 
             // Copy all existing items to the new array
-            for (int i = 0; i < count; i++){
+            for (int i = 0; i < count; i++) {
                 newItems[i] = items[i];
             }
 
-            // Replace the old array with the new one
+            // Replace the old array with the new onea
             items = newItems;
         }
 
@@ -56,22 +57,22 @@ public class DynamicArray{
     }
 
     // Method to remove an item by its value
-    public int removeByValue(int value){
+    public int removeByValue(int value) {
         int index = -1; // -1 means value not found
-        for (int i = 0; i < count; i++){
-            if (items[i] == value){
+        for (int i = 0; i < count; i++) {
+            if (items[i] == value) {
                 index = i;
                 break;
             }
         }
 
-        if (index == -1){
+        if (index == -1) {
             System.out.println("Value not found");
             return -1;
         }
 
         // Shift the items to the left
-        for (int i = index; i < count - 1; i++){
+        for (int i = index; i < count - 1; i++) {
             items[i] = items[i + 1];
         }
 
@@ -81,22 +82,23 @@ public class DynamicArray{
     }
 
     // Method to search for an item
-    public void search(int item){
-        for (int i = 0; i < count; i++){
-            if (items[i] == item){
-                System.out.println("Item found at index: " + i);
-                return;
+    public boolean search(int value){
+        for (int i = 0; i < count; i++) {
+            if (items[i] == value) {
+                System.out.println("Value found");
+                return true;
             }
         }
-        System.out.println("Item not found");
+        System.out.println("Value not found");
+        return false;
     }
 
     // Method to load items from a file
-    public void loadFromFile(String filename){
+    public void loadFromFile(String filename) {
         File file = new File(filename);
         try {
             Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()){
+            while (scanner.hasNext()) {
                 if (scanner.hasNextInt()) {
                     int nextInt = scanner.nextInt();
                     insertIntoArray(count, nextInt);
@@ -105,7 +107,7 @@ public class DynamicArray{
                 }
             }
             scanner.close();
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("File not found" + filename);
         }
     }
@@ -121,13 +123,11 @@ public class DynamicArray{
         } catch (Exception e) {
             System.out.println("Error in CsvFileWriter");
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 fileWriter.flush();
                 fileWriter.close();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 System.out.println("Error while flushing/closing fileWriter");
                 e.printStackTrace();
             }
@@ -141,36 +141,50 @@ public class DynamicArray{
             // Generate a random number between 0 and 100
             int randomNumber = random.nextInt(101);
 
-            // Measure the time taken to insert the random number into the array at the current index
+            // Measure the time taken to insert the random number into the array at the
+            // beggining
             long startTime = System.nanoTime();
-            insertIntoArray(i, randomNumber);
+            insertIntoArray(0, randomNumber); // Insert at the beginning
             long endTime = System.nanoTime();
-            long insertTime = endTime - startTime;
+            long insertTimeStart = endTime - startTime;
+            writeDataToCSV("insertStart", insertTimeStart);
 
-            // Measure the time taken to remove the number if it is divisible by 10
+            // Measure the time taken to insert the random number into the array at the
+            // middle
             startTime = System.nanoTime();
-            if (randomNumber % 10 == 0) {
-                removeByValue(randomNumber);
-            }
+            insertIntoArray(count / 2, randomNumber); // Insert at the middle
             endTime = System.nanoTime();
-            long removeTime = endTime - startTime;
+            long insertTimeMiddle = endTime - startTime;
+            writeDataToCSV("insertMiddle", insertTimeMiddle);
 
-            // Measure the time taken to search for the number in the array
+            // Measure the time taken to insert the random number into the array at the end
+            startTime = System.nanoTime();
+            insertIntoArray(count, randomNumber); // Insert at the end
+            endTime = System.nanoTime();
+            long insertTimeEnd = endTime - startTime;
+            writeDataToCSV("insertEnd", insertTimeEnd);
+
+            // Measure the time taken to search for the random number
             startTime = System.nanoTime();
             search(randomNumber);
             endTime = System.nanoTime();
             long searchTime = endTime - startTime;
-
-            // Write the operation times to a CSV file
-            writeDataToCSV("insert", insertTime);
-            writeDataToCSV("remove", removeTime);
             writeDataToCSV("search", searchTime);
+
+            // Measure the time taken to remove the random number
+            startTime = System.nanoTime();
+            removeByValue(randomNumber);
+            endTime = System.nanoTime();
+            long removeTime = endTime - startTime;
+            writeDataToCSV("remove", removeTime);
+
         }
+
     }
 
     // Method to display all items in the array
-    public void show(){
-        for(int i = 0; i < count; i++){// Iterate only to count
+    public void show() {
+        for (int i = 0; i < count; i++) {// Iterate only to count
             System.out.print(items[i] + " ");
         }
     }

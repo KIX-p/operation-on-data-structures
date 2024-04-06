@@ -15,7 +15,7 @@ public class ArrayOperations {
             displayArrayMenu();
             choice = scanner.nextInt();
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     handleInsertOperation();
                     break;
@@ -43,6 +43,7 @@ public class ArrayOperations {
             }
         } while (choice != 7);
     }
+
     private void displayArrayMenu() {
         System.out.println("\nChoose an operation:");
         System.out.println("1. Insert");
@@ -53,6 +54,7 @@ public class ArrayOperations {
         System.out.println("6. Perform operations");
         System.out.println("7. Exit");
     }
+
     private void handleInsertOperation() {
         System.out.print("Enter the index: ");
         int index = scanner.nextInt();
